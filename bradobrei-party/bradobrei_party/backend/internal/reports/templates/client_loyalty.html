@@ -1,0 +1,48 @@
+{{define "content"}}
+<section class="report-section">
+  <div class="summary-grid">
+    <article class="summary-card">
+      <span>Клиентов</span>
+      <strong>{{len .Rows}}</strong>
+    </article>
+    <article class="summary-card">
+      <span>Отчёт</span>
+      <strong>Клиентская лояльность</strong>
+    </article>
+    <article class="summary-card">
+      <span>Период</span>
+      <strong>{{safePeriod .Meta.PeriodFrom .Meta.PeriodTo}}</strong>
+    </article>
+  </div>
+
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>Клиент</th>
+        <th>Контакты</th>
+        <th>Первый визит</th>
+        <th>Последний визит</th>
+        <th>Визиты</th>
+        <th>Оплачено</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Rows}}
+      <tr>
+        <td>{{.FullName}}</td>
+        <td>
+          <div>{{.Phone}}</div>
+          {{if .Email}}<div class="muted">{{.Email}}</div>{{end}}
+        </td>
+        <td>{{if .FirstVisit}}{{formatMaybeDateTime .FirstVisit}}{{else}}<span class="muted">—</span>{{end}}</td>
+        <td>{{if .LastVisit}}{{formatMaybeDateTime .LastVisit}}{{else}}<span class="muted">—</span>{{end}}</td>
+        <td>{{.VisitCount}}</td>
+        <td>{{formatMoney .PaidTotal}}</td>
+        <td>{{.BonusStatus}}</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</section>
+{{end}}

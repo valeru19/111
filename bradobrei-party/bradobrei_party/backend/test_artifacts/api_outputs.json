@@ -1,0 +1,644 @@
+{
+  "booking_confirm": {
+    "id": 1,
+    "start_time": "2026-04-06T19:19:27+05:00",
+    "duration_minutes": 75,
+    "status": "CONFIRMED",
+    "total_price": 1800,
+    "notes": "E2E booking scenario",
+    "client_id": 3,
+    "master_id": 2,
+    "salon_id": 1,
+    "created_at": "2026-04-05T19:19:27.769701+05:00",
+    "updated_at": "2026-04-05T19:19:27.7843493+05:00",
+    "client": {
+      "id": 3,
+      "username": "client_petr",
+      "full_name": "Test Client",
+      "phone": "+79990002233",
+      "email": "client_petr@example.com",
+      "role": "CLIENT",
+      "created_at": "2026-04-05T19:19:27.652342+05:00",
+      "updated_at": "2026-04-05T19:19:27.652342+05:00"
+    },
+    "salon": {
+      "id": 1,
+      "name": "Базовый салон",
+      "address": "Екатеринбург",
+      "status": "OPEN",
+      "max_staff": 5,
+      "base_hourly_rate": 1200,
+      "created_at": "2026-04-05T19:19:27.016209+05:00",
+      "updated_at": "2026-04-05T19:19:27.016209+05:00"
+    },
+    "items": [
+      {
+        "id": 1,
+        "booking_id": 1,
+        "service_id": 1,
+        "quantity": 1,
+        "price_at_booking": 1800,
+        "service": {
+          "id": 1,
+          "name": "Service-1775398767760771400",
+          "description": "Test service for API e2e",
+          "price": 1800,
+          "duration_minutes": 75,
+          "created_at": "2026-04-05T19:19:27.764343+05:00",
+          "updated_at": "2026-04-05T19:19:27.764343+05:00"
+        }
+      }
+    ]
+  },
+  "booking_create": {
+    "id": 1,
+    "start_time": "2026-04-06T14:19:27Z",
+    "duration_minutes": 75,
+    "status": "PENDING",
+    "total_price": 1800,
+    "notes": "E2E booking scenario",
+    "client_id": 3,
+    "salon_id": 1,
+    "created_at": "2026-04-05T19:19:27.7697013+05:00",
+    "updated_at": "2026-04-05T19:19:27.7697013+05:00",
+    "client": {
+      "id": 0,
+      "username": "",
+      "full_name": "",
+      "phone": "",
+      "role": "",
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z"
+    },
+    "salon": {
+      "id": 0,
+      "name": "",
+      "address": "",
+      "status": "",
+      "max_staff": 0,
+      "base_hourly_rate": 0,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z"
+    },
+    "items": [
+      {
+        "id": 1,
+        "booking_id": 1,
+        "service_id": 1,
+        "quantity": 1,
+        "price_at_booking": 1800,
+        "service": {
+          "id": 0,
+          "name": "",
+          "description": "",
+          "price": 0,
+          "duration_minutes": 0,
+          "created_at": "0001-01-01T00:00:00Z",
+          "updated_at": "0001-01-01T00:00:00Z"
+        }
+      }
+    ]
+  },
+  "booking_get_my": [
+    {
+      "id": 1,
+      "start_time": "2026-04-06T19:19:27+05:00",
+      "duration_minutes": 75,
+      "status": "PENDING",
+      "total_price": 1800,
+      "notes": "E2E booking scenario",
+      "client_id": 3,
+      "salon_id": 1,
+      "created_at": "2026-04-05T19:19:27.769701+05:00",
+      "updated_at": "2026-04-05T19:19:27.769701+05:00",
+      "client": {
+        "id": 0,
+        "username": "",
+        "full_name": "",
+        "phone": "",
+        "role": "",
+        "created_at": "0001-01-01T00:00:00Z",
+        "updated_at": "0001-01-01T00:00:00Z"
+      },
+      "salon": {
+        "id": 1,
+        "name": "Базовый салон",
+        "address": "Екатеринбург",
+        "status": "OPEN",
+        "max_staff": 5,
+        "base_hourly_rate": 1200,
+        "created_at": "2026-04-05T19:19:27.016209+05:00",
+        "updated_at": "2026-04-05T19:19:27.016209+05:00"
+      },
+      "items": [
+        {
+          "id": 1,
+          "booking_id": 1,
+          "service_id": 1,
+          "quantity": 1,
+          "price_at_booking": 1800,
+          "service": {
+            "id": 1,
+            "name": "Service-1775398767760771400",
+            "description": "Test service for API e2e",
+            "price": 1800,
+            "duration_minutes": 75,
+            "created_at": "2026-04-05T19:19:27.764343+05:00",
+            "updated_at": "2026-04-05T19:19:27.764343+05:00"
+          }
+        }
+      ]
+    }
+  ],
+  "booking_master_list": [
+    {
+      "id": 1,
+      "start_time": "2026-04-06T19:19:27+05:00",
+      "duration_minutes": 75,
+      "status": "CONFIRMED",
+      "total_price": 1800,
+      "notes": "E2E booking scenario",
+      "client_id": 3,
+      "master_id": 2,
+      "salon_id": 1,
+      "created_at": "2026-04-05T19:19:27.769701+05:00",
+      "updated_at": "2026-04-05T19:19:27.784349+05:00",
+      "client": {
+        "id": 3,
+        "username": "client_petr",
+        "full_name": "Test Client",
+        "phone": "+79990002233",
+        "email": "client_petr@example.com",
+        "role": "CLIENT",
+        "created_at": "2026-04-05T19:19:27.652342+05:00",
+        "updated_at": "2026-04-05T19:19:27.652342+05:00"
+      },
+      "salon": {
+        "id": 1,
+        "name": "Базовый салон",
+        "address": "Екатеринбург",
+        "status": "OPEN",
+        "max_staff": 5,
+        "base_hourly_rate": 1200,
+        "created_at": "2026-04-05T19:19:27.016209+05:00",
+        "updated_at": "2026-04-05T19:19:27.016209+05:00"
+      },
+      "items": [
+        {
+          "id": 1,
+          "booking_id": 1,
+          "service_id": 1,
+          "quantity": 1,
+          "price_at_booking": 1800,
+          "service": {
+            "id": 1,
+            "name": "Service-1775398767760771400",
+            "description": "Test service for API e2e",
+            "price": 1800,
+            "duration_minutes": 75,
+            "created_at": "2026-04-05T19:19:27.764343+05:00",
+            "updated_at": "2026-04-05T19:19:27.764343+05:00"
+          }
+        }
+      ]
+    }
+  ],
+  "employee_create": {
+    "id": 1,
+    "user_id": 2,
+    "specialization": "Fade, beard styling",
+    "expected_salary": 85000,
+    "work_schedule": "{\"mon\": \"10:00-19:00\", \"wed\": \"10:00-19:00\"}",
+    "created_at": "2026-04-05T19:19:32.969329+05:00",
+    "updated_at": "2026-04-05T19:19:32.969329+05:00",
+    "user": {
+      "id": 2,
+      "username": "worker_ivan",
+      "full_name": "Иван Барбер",
+      "phone": "+79990001122",
+      "email": "worker.ivan@example.com",
+      "role": "ADVANCED_MASTER",
+      "created_at": "2026-04-05T19:19:32.969329+05:00",
+      "updated_at": "2026-04-05T19:19:32.969329+05:00"
+    },
+    "salons": [
+      {
+        "id": 1,
+        "name": "Базовый салон",
+        "address": "Екатеринбург",
+        "status": "OPEN",
+        "max_staff": 5,
+        "base_hourly_rate": 1200,
+        "created_at": "2026-04-05T19:19:32.662663+05:00",
+        "updated_at": "2026-04-05T19:19:32.662663+05:00"
+      }
+    ]
+  },
+  "employee_update": {
+    "id": 1,
+    "user_id": 2,
+    "specialization": "Fade, beard styling",
+    "expected_salary": 95000,
+    "work_schedule": "{\"mon\": \"10:00-19:00\", \"wed\": \"10:00-19:00\"}",
+    "created_at": "2026-04-05T19:19:32.208104+05:00",
+    "updated_at": "2026-04-05T19:19:32.413839+05:00",
+    "user": {
+      "id": 2,
+      "username": "worker_ivan",
+      "full_name": "Иван Барбер Обновлённый",
+      "phone": "+79990001122",
+      "email": "worker.ivan@example.com",
+      "role": "ADVANCED_MASTER",
+      "created_at": "2026-04-05T19:19:32.204359+05:00",
+      "updated_at": "2026-04-05T19:19:32.412253+05:00"
+    },
+    "salons": [
+      {
+        "id": 1,
+        "name": "Базовый салон",
+        "address": "Екатеринбург",
+        "status": "OPEN",
+        "max_staff": 5,
+        "base_hourly_rate": 1200,
+        "created_at": "2026-04-05T19:19:31.768447+05:00",
+        "updated_at": "2026-04-05T19:19:31.768447+05:00"
+      }
+    ]
+  },
+  "inventory_list": [
+    {
+      "id": 1,
+      "salon_id": 1,
+      "material_id": 1,
+      "quantity": 25,
+      "last_updated": "2026-04-05T19:19:29.038809+05:00",
+      "salon": {
+        "id": 0,
+        "name": "",
+        "address": "",
+        "status": "",
+        "max_staff": 0,
+        "base_hourly_rate": 0,
+        "created_at": "0001-01-01T00:00:00Z",
+        "updated_at": "0001-01-01T00:00:00Z"
+      },
+      "material": {
+        "id": 1,
+        "name": "Material-1775398769030544900",
+        "unit": "ml"
+      }
+    }
+  ],
+  "inventory_update": {
+    "id": 1,
+    "salon_id": 1,
+    "material_id": 1,
+    "quantity": 40,
+    "last_updated": "2026-04-05T19:19:29.044473+05:00",
+    "salon": {
+      "id": 0,
+      "name": "",
+      "address": "",
+      "status": "",
+      "max_staff": 0,
+      "base_hourly_rate": 0,
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z"
+    },
+    "material": {
+      "id": 1,
+      "name": "Material-1775398769030544900",
+      "unit": "ml"
+    }
+  },
+  "material_expense_create": {
+    "id": 1,
+    "material_id": 1,
+    "salon_id": 1,
+    "purchase_price": 350,
+    "quantity": 5,
+    "created_at": "2026-04-05T19:19:29.037234+05:00",
+    "updated_at": "2026-04-05T19:19:29.037234+05:00",
+    "material": {
+      "id": 1,
+      "name": "Material-1775398769030544900",
+      "unit": "ml"
+    },
+    "salon": {
+      "id": 1,
+      "name": "Базовый салон",
+      "address": "Екатеринбург",
+      "status": "OPEN",
+      "max_staff": 5,
+      "base_hourly_rate": 1200,
+      "created_at": "2026-04-05T19:19:28.637049+05:00",
+      "updated_at": "2026-04-05T19:19:28.637049+05:00"
+    }
+  },
+  "payment_create": {
+    "id": 1,
+    "booking_id": 1,
+    "amount": 1800,
+    "status": "SUCCESS",
+    "external_transaction_id": "txn_test_success_001",
+    "created_at": "2026-04-05T19:19:28.4228616+05:00",
+    "completed_at": "2026-04-05T19:19:28.4223573+05:00"
+  },
+  "payment_get": {
+    "id": 1,
+    "booking_id": 1,
+    "amount": 1800,
+    "status": "SUCCESS",
+    "external_transaction_id": "txn_test_success_001",
+    "created_at": "2026-04-05T19:19:28.422861+05:00",
+    "completed_at": "2026-04-05T19:19:28.422357+05:00"
+  },
+  "report_cancelled_bookings": {
+    "data": [
+      {
+        "booking_id": 2,
+        "planned_visit": "2026-04-07T21:19:29+05:00",
+        "client_full_name": "Test Client",
+        "master_full_name": "Не назначен",
+        "cancellation_reason": "E2E booking scenario",
+        "cancellation_rate_pct": 50,
+        "status": "CANCELLED"
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "cancelled_bookings"
+  },
+  "report_client_loyalty": {
+    "data": [
+      {
+        "client_id": 3,
+        "full_name": "Test Client",
+        "phone": "+79990002233",
+        "email": "client_maria@example.com",
+        "first_visit": "2026-04-07T19:19:29+05:00",
+        "last_visit": "2026-04-07T19:19:29+05:00",
+        "visit_count": 1,
+        "paid_total": 0,
+        "bonus_status": "BASIC"
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "client_loyalty"
+  },
+  "report_employees": {
+    "data": [
+      {
+        "id": 1,
+        "username": "admin",
+        "full_name": "Администратор Системы",
+        "phone": "+79990000000",
+        "role": "ADMINISTRATOR",
+        "created_at": "2026-04-05T19:19:29.381426+05:00",
+        "updated_at": "2026-04-05T19:19:29.381426+05:00"
+      },
+      {
+        "id": 2,
+        "username": "worker_ivan",
+        "full_name": "Иван Барбер",
+        "phone": "+79990001122",
+        "email": "worker.ivan@example.com",
+        "role": "ADVANCED_MASTER",
+        "created_at": "2026-04-05T19:19:29.619781+05:00",
+        "updated_at": "2026-04-05T19:19:29.619781+05:00",
+        "employee_profile": {
+          "id": 1,
+          "user_id": 2,
+          "specialization": "Fade, beard styling",
+          "expected_salary": 85000,
+          "work_schedule": "{\"mon\": \"10:00-19:00\", \"wed\": \"10:00-19:00\"}",
+          "created_at": "2026-04-05T19:19:29.619781+05:00",
+          "updated_at": "2026-04-05T19:19:29.619781+05:00",
+          "user": {
+            "id": 0,
+            "username": "",
+            "full_name": "",
+            "phone": "",
+            "role": "",
+            "created_at": "0001-01-01T00:00:00Z",
+            "updated_at": "0001-01-01T00:00:00Z"
+          },
+          "salons": [
+            {
+              "id": 1,
+              "name": "Базовый салон",
+              "address": "Екатеринбург",
+              "status": "OPEN",
+              "max_staff": 5,
+              "base_hourly_rate": 1200,
+              "created_at": "2026-04-05T19:19:29.291664+05:00",
+              "updated_at": "2026-04-05T19:19:29.291664+05:00"
+            }
+          ]
+        }
+      }
+    ],
+    "report": "employee_list"
+  },
+  "report_financial_summary": {
+    "data": null,
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "financial_summary"
+  },
+  "report_inventory_movement": {
+    "data": [
+      {
+        "salon_id": 1,
+        "salon_address": "Екатеринбург",
+        "material_name": "Material-1775398769889412500",
+        "unit": "ml",
+        "opening_balance": 20,
+        "purchased": 0,
+        "written_off": 1,
+        "current_balance": 19
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "inventory_movement"
+  },
+  "report_master_activity": {
+    "data": [
+      {
+        "master_id": 2,
+        "full_name": "Иван Барбер",
+        "service_count": 1,
+        "revenue": 1800,
+        "material_cost": 1
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "master_activity"
+  },
+  "report_reviews": {
+    "data": [
+      {
+        "id": 1,
+        "user_id": 3,
+        "text": "Отличный тестовый отзыв",
+        "rating": 5,
+        "created_at": "2026-04-05T19:19:29.9127+05:00",
+        "user": {
+          "id": 3,
+          "username": "client_maria",
+          "full_name": "Test Client",
+          "phone": "+79990002233",
+          "email": "client_maria@example.com",
+          "role": "CLIENT",
+          "created_at": "2026-04-05T19:19:29.804529+05:00",
+          "updated_at": "2026-04-05T19:19:29.804529+05:00"
+        }
+      }
+    ],
+    "period": {
+      "from": "2026-03-05T19:19:29.9250419+05:00",
+      "to": "2026-04-05T19:19:29.9250419+05:00"
+    },
+    "report": "reviews"
+  },
+  "report_salon_activity": {
+    "data": [
+      {
+        "salon_id": 1,
+        "address": "Екатеринбург",
+        "client_count": 1,
+        "service_count": 1,
+        "total_revenue": 1800
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "salon_activity"
+  },
+  "report_service_popularity": {
+    "data": [
+      {
+        "service_id": 1,
+        "service_name": "Service-1775398769889412500",
+        "usage_count": 2,
+        "relative_freq": 2
+      }
+    ],
+    "period": {
+      "from": "2026-04-06T00:00:00Z",
+      "to": "2026-04-10T00:00:00Z"
+    },
+    "report": "service_popularity"
+  },
+  "review_create": {
+    "id": 1,
+    "user_id": 2,
+    "text": "Отличный тестовый отзыв",
+    "rating": 5,
+    "created_at": "2026-04-05T19:19:30.8061759+05:00",
+    "user": {
+      "id": 0,
+      "username": "",
+      "full_name": "",
+      "phone": "",
+      "role": "",
+      "created_at": "0001-01-01T00:00:00Z",
+      "updated_at": "0001-01-01T00:00:00Z"
+    }
+  },
+  "review_get": {
+    "id": 1,
+    "user_id": 3,
+    "text": "Отличный тестовый отзыв",
+    "rating": 5,
+    "created_at": "2026-04-05T19:19:29.9127+05:00",
+    "user": {
+      "id": 3,
+      "username": "client_maria",
+      "full_name": "Test Client",
+      "phone": "+79990002233",
+      "email": "client_maria@example.com",
+      "role": "CLIENT",
+      "created_at": "2026-04-05T19:19:29.804529+05:00",
+      "updated_at": "2026-04-05T19:19:29.804529+05:00"
+    }
+  },
+  "review_get_by_id": {
+    "id": 1,
+    "user_id": 2,
+    "text": "Отличный тестовый отзыв",
+    "rating": 5,
+    "created_at": "2026-04-05T19:19:30.806175+05:00",
+    "user": {
+      "id": 2,
+      "username": "client_review",
+      "full_name": "Test Client",
+      "phone": "+79990002233",
+      "email": "client_review@example.com",
+      "role": "CLIENT",
+      "created_at": "2026-04-05T19:19:30.530845+05:00",
+      "updated_at": "2026-04-05T19:19:30.530845+05:00"
+    }
+  },
+  "review_list": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "text": "Отличный тестовый отзыв",
+      "rating": 5,
+      "created_at": "2026-04-05T19:19:30.806175+05:00",
+      "user": {
+        "id": 2,
+        "username": "client_review",
+        "full_name": "Test Client",
+        "phone": "+79990002233",
+        "email": "client_review@example.com",
+        "role": "CLIENT",
+        "created_at": "2026-04-05T19:19:30.530845+05:00",
+        "updated_at": "2026-04-05T19:19:30.530845+05:00"
+      }
+    }
+  ],
+  "salon_create": {
+    "id": 2,
+    "name": "Золотые руки",
+    "address": "Пермь",
+    "location": "POINT(56.223 58.0141)",
+    "working_hours": "{\"mon\":\"10:00-20:00\",\"tue\":\"10:00-20:00\"}",
+    "status": "OPEN",
+    "max_staff": 8,
+    "base_hourly_rate": 1400,
+    "created_at": "2026-04-05T19:19:33.1748303+05:00",
+    "updated_at": "2026-04-05T19:19:33.1748303+05:00"
+  },
+  "salon_update": {
+    "id": 2,
+    "name": "Золотые руки Плюс",
+    "address": "Пермь, центр",
+    "location": "POINT(56.223 58.0141)",
+    "working_hours": "{\"mon\":\"09:00-21:00\",\"tue\":\"09:00-21:00\"}",
+    "status": "OPEN",
+    "max_staff": 10,
+    "base_hourly_rate": 1700,
+    "created_at": "2026-04-05T19:19:33.17483+05:00",
+    "updated_at": "2026-04-05T19:19:33.1796763+05:00"
+  },
+  "service_use": {
+    "message": "Материалы по услуге списаны"
+  }
+}

@@ -1,0 +1,45 @@
+{{define "content"}}
+<section class="report-section">
+  <div class="summary-grid">
+    <article class="summary-card">
+      <span>Отмен в выборке</span>
+      <strong>{{len .Rows}}</strong>
+    </article>
+    <article class="summary-card">
+      <span>Отчёт</span>
+      <strong>Отменённые бронирования</strong>
+    </article>
+    <article class="summary-card">
+      <span>Период</span>
+      <strong>{{safePeriod .Meta.PeriodFrom .Meta.PeriodTo}}</strong>
+    </article>
+  </div>
+
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Плановый визит</th>
+        <th>Клиент</th>
+        <th>Мастер</th>
+        <th>Причина</th>
+        <th>Доля отмен</th>
+        <th>Статус</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Rows}}
+      <tr>
+        <td>{{.BookingID}}</td>
+        <td>{{formatDateTime .PlannedVisit}}</td>
+        <td>{{.ClientFullName}}</td>
+        <td>{{.MasterFullName}}</td>
+        <td>{{.CancellationReason}}</td>
+        <td>{{printf "%.2f%%" .CancellationRatePct}}</td>
+        <td>{{.Status}}</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</section>
+{{end}}

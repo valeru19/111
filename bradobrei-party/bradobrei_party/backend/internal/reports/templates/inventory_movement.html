@@ -1,0 +1,43 @@
+{{define "content"}}
+<section class="report-section">
+  <div class="summary-grid">
+    <article class="summary-card">
+      <span>Строк в ведомости</span>
+      <strong>{{len .Rows}}</strong>
+    </article>
+    <article class="summary-card">
+      <span>Отчёт</span>
+      <strong>Движение ТМЦ</strong>
+    </article>
+    <article class="summary-card">
+      <span>Период</span>
+      <strong>{{safePeriod .Meta.PeriodFrom .Meta.PeriodTo}}</strong>
+    </article>
+  </div>
+
+  <table class="report-table">
+    <thead>
+      <tr>
+        <th>Салон</th>
+        <th>Материал</th>
+        <th>Остаток на начало</th>
+        <th>Поступило</th>
+        <th>Списано</th>
+        <th>Текущий остаток</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Rows}}
+      <tr>
+        <td>{{.SalonAddress}}</td>
+        <td>{{.MaterialName}} ({{.Unit}})</td>
+        <td>{{printf "%.2f" .OpeningBalance}}</td>
+        <td>{{printf "%.2f" .Purchased}}</td>
+        <td>{{printf "%.2f" .WrittenOff}}</td>
+        <td>{{printf "%.2f" .CurrentBalance}}</td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</section>
+{{end}}

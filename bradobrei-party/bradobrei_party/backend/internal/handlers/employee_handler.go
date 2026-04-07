@@ -1,0 +1,249 @@
+package handlers
+
+import (
+	"crypto/rand"
+	"encoding/base64"
+	"net/http"
+	"strconv"
+	"strings"
+
+	"bradobrei/backend/internal/dto"
+	"bradobrei/backend/internal/middleware"
+	"bradobrei/backend/internal/services"
+
+	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
+)
+
+type EmployeeHandler struct {
+	employeeService *services.EmployeeService
+}
+
+func NewEmployeeHandler(employeeService *services.EmployeeService) *EmployeeHandler {
+	return &EmployeeHandler{employeeService: employeeService}
+}
+
+func (h *EmployeeHandler) GetAll(c *gin.Context) {
+	list, err := h.employeeService.GetAll()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, dto.ErrorResponse{Error: "internal", Code: 500})
+		return
+	}
+	c.JSON(http.StatusOK, list)
+}
+
+func (h *EmployeeHandler) GetByID(c *gin.Context) {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{Error: "bad_request", Code: 400})
+		return
+	}
+	profile, err := h.employeeService.GetByID(uint(id))
+	if err != nil {
+		c.JSON(http.StatusNotFound, dto.ErrorResponse{
+			Error: "not_found", Code: 404, Message: "Профиль сотрудника не найден",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, profile)
+}
+
+func (h *EmployeeHandler) GetMe(c *gin.Context) {
+	claims, _ := middleware.GetCurrentClaims(c)
+	profile, err := h.employeeService.GetMyProfile(claims.UserID)
+	if err != nil {
+		c.JSON(http.StatusNotFound, dto.ErrorResponse{
+			Error: "not_found", Code: 404, Message: "Профиль не найден",
+		})
+		return
+	}
+	c.JSON(http.StatusOK, profile)
+}
+
+func (h *EmployeeHandler) Hire(c *gin.Context) {
+	var req dto.HireEmployeeRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	if strings.TrimSpace(req.Password) != "" {
+		hash, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, dto.ErrorResponse{Error: "internal", Code: 500})
+			return
+		}
+		req.PasswordHash = string(hash)
+		req.MustSetPassword = false
+	} else {
+		rnd := make([]byte, 32)
+		if _, err := rand.Read(rnd); err != nil {
+			c.JSON(http.StatusInternalServerError, dto.ErrorResponse{Error: "internal", Code: 500})
+			return
+		}
+		placeholder := base64.RawURLEncoding.EncodeToString(rnd)
+		hash, err := bcrypt.GenerateFromPassword([]byte(placeholder), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, dto.ErrorResponse{Error: "internal", Code: 500})
+			return
+		}
+		req.PasswordHash = string(hash)
+		req.MustSetPassword = true
+	}
+
+	profile, err := h.employeeService.HireEmployee(req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "hire_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusCreated, profile)
+}
+
+func (h *EmployeeHandler) PatchMeProfile(c *gin.Context) {
+	claims, _ := middleware.GetCurrentClaims(c)
+
+	var req dto.PatchMyProfileRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	profile, err := h.employeeService.PatchMyProfile(claims.UserID, req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "update_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, profile)
+}
+
+func (h *EmployeeHandler) Update(c *gin.Context) {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{Error: "bad_request", Code: 400})
+		return
+	}
+
+	var req dto.UpdateEmployeeRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	profile, err := h.employeeService.UpdateEmployee(uint(id), req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "update_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, profile)
+}
+
+func (h *EmployeeHandler) Patch(c *gin.Context) {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{Error: "bad_request", Code: 400})
+		return
+	}
+
+	var req dto.PatchEmployeeRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	profile, err := h.employeeService.PatchEmployee(uint(id), req)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "patch_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, profile)
+}
+
+func (h *EmployeeHandler) Fire(c *gin.Context) {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{Error: "bad_request", Code: 400})
+		return
+	}
+
+	if err := h.employeeService.FireEmployee(uint(id)); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "fire_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Сотрудник уволен"})
+}
+
+func (h *EmployeeHandler) UpdateMySchedule(c *gin.Context) {
+	claims, _ := middleware.GetCurrentClaims(c)
+
+	var req dto.UpdateScheduleRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	if err := h.employeeService.UpdateSchedule(claims.UserID, req.Schedule); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "update_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Расписание обновлено"})
+}
+
+func (h *EmployeeHandler) AssignToSalon(c *gin.Context) {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{Error: "bad_request", Code: 400})
+		return
+	}
+
+	var req dto.AssignSalonRequest
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "bad_request", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+
+	if err := h.employeeService.AssignToSalon(uint(id), req.SalonID); err != nil {
+		c.JSON(http.StatusBadRequest, dto.ErrorResponse{
+			Error: "assign_failed", Code: 400, Message: err.Error(),
+		})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Сотрудник прикреплён к салону"})
+}
+
+func (h *EmployeeHandler) RemoveFromSalon(c *gin.Context) {
+	id, _ := strconv.ParseUint(c.Param("id"), 10, 64)
+	salonID, _ := strconv.ParseUint(c.Param("salonId"), 10, 64)
+
+	if err := h.employeeService.RemoveFromSalon(uint(id), uint(salonID)); err != nil {
+		c.JSON(http.StatusInternalServerError, dto.ErrorResponse{Error: "internal", Code: 500})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Сотрудник откреплён от салона"})
+}
